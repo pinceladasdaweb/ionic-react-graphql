@@ -1,0 +1,18 @@
+overwrite: true
+schema: 'https://api.spacex.land/graphql/'
+documents: 'src/graphql/**/*.ts'
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - add: /* eslint-disable */
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      avoidOptionals: true
+      maybeValue: T
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      withMutationFn: false
+      withResultType: false 
