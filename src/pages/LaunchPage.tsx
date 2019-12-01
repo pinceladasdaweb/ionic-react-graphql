@@ -1,5 +1,8 @@
 import {
+  IonRow,
+  IonCol,
   IonPage,
+  IonGrid,
   IonModal,
   IonTitle,
   IonHeader,
@@ -39,14 +42,20 @@ const LaunchPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
-        {loading ? (
-          <p>Loading ...</p>
-        ) : (
-          <LaunchDetail
-            launch={data!.launch as Launch}
-            onSelectImage={handleSelectImage}
-          />
-        )}
+        <IonGrid fixed>
+          <IonRow>
+            <IonCol sizeLg='8' offsetLg='2'>
+              {loading ? (
+                <p>Loading ...</p>
+              ) : (
+                <LaunchDetail
+                  launch={data!.launch as Launch}
+                  onSelectImage={handleSelectImage}
+                />
+              )}
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
 
       <IonModal isOpen={!!selectedImage} onDidDismiss={handleModalClose}>
