@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const LAUNCHES_PAST_QUERY = gql`
-  query LaunchesPast {
-    launchesPast {
+  query LaunchesPast($limit: Int, $offset: Int) {
+    launchesPast(limit: $limit, offset: $offset) {
       id
       mission_name
       launch_date_local
