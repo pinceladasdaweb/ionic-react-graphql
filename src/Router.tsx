@@ -6,9 +6,10 @@ import { IonReactRouter } from '@ionic/react-router'
 import LaunchPage from './pages/LaunchPage'
 import LaunchesPage from './pages/LaunchesPage'
 
-const Router: React.FC = () => (
+const Router: React.FC = props => (
   <IonReactRouter>
-    <IonRouterOutlet>
+    {props.children}
+    <IonRouterOutlet id='main-content'>
       <Route path="/launches" exact>
         <LaunchesPage />
       </Route>

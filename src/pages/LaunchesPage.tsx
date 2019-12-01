@@ -1,9 +1,11 @@
 import {
-  IonContent,
-  IonHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonContent,
+  IonMenuButton
 } from '@ionic/react'
 import React from 'react'
 
@@ -13,7 +15,10 @@ const LaunchesPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="primary">
+          <IonButtons slot='start'>
+            <IonMenuButton />
+          </IonButtons>
           <IonTitle>SpaceX Launches</IonTitle>
         </IonToolbar>
       </IonHeader>
