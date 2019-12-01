@@ -1,0 +1,33 @@
+.img {
+  height: 250px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.card {
+  position: relative;
+  text-align: center;
+}
+
+.baseText {
+  position: absolute;
+  color: var(--ion-color-light);
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.cardTitle {
+  @extend .baseText;
+  top: 36%;
+  font-size: 2em;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cardSubtitle {
+  @extend .baseText;
+  font-size: 1.2em;
+  top: 52%;
+}
