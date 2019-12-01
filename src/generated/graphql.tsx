@@ -1343,6 +1343,26 @@ export type LaunchesPastQuery = (
   )>>> }
 );
 
+export type LaunchQueryVariables = {
+  id: Scalars['ID']
+};
+
+
+export type LaunchQuery = (
+  { __typename?: 'Query' }
+  & { launch: Maybe<(
+    { __typename?: 'Launch' }
+    & Pick<Launch, 'id' | 'details' | 'mission_name' | 'launch_date_utc' | 'launch_success'>
+    & { links: Maybe<(
+      { __typename?: 'LaunchLinks' }
+      & Pick<LaunchLinks, 'flickr_images' | 'mission_patch_small'>
+    )>, rocket: Maybe<(
+      { __typename?: 'LaunchRocket' }
+      & Pick<LaunchRocket, 'rocket_name'>
+    )> }
+  )> }
+);
+
 
 export const LaunchesPastDocument = gql`
     query LaunchesPast($limit: Int, $offset: Int) {
@@ -1385,3 +1405,46 @@ export function useLaunchesPastLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
         }
 export type LaunchesPastQueryHookResult = ReturnType<typeof useLaunchesPastQuery>;
 export type LaunchesPastLazyQueryHookResult = ReturnType<typeof useLaunchesPastLazyQuery>;
+export const LaunchDocument = gql`
+    query Launch($id: ID!) {
+  launch(id: $id) {
+    id
+    details
+    mission_name
+    launch_date_utc
+    launch_success
+    links {
+      flickr_images
+      mission_patch_small
+    }
+    rocket {
+      rocket_name
+    }
+  }
+}
+    `;
+
+/**
+ * __useLaunchQuery__
+ *
+ * To run a query within a React component, call `useLaunchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLaunchQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLaunchQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useLaunchQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<LaunchQuery, LaunchQueryVariables>) {
+        return ApolloReactHooks.useQuery<LaunchQuery, LaunchQueryVariables>(LaunchDocument, baseOptions);
+      }
+export function useLaunchLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LaunchQuery, LaunchQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<LaunchQuery, LaunchQueryVariables>(LaunchDocument, baseOptions);
+        }
+export type LaunchQueryHookResult = ReturnType<typeof useLaunchQuery>;
+export type LaunchLazyQueryHookResult = ReturnType<typeof useLaunchLazyQuery>;

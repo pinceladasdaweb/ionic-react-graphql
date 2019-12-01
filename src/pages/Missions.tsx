@@ -14,7 +14,7 @@ const Missions: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ionic Blank</IonTitle>
+          <IonTitle>SpaceX Launchs</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
