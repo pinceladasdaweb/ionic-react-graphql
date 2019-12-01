@@ -1322,7 +1322,10 @@ export type Volume = {
   cubic_meters: Maybe<Scalars['Int']>,
 };
 
-export type LaunchesPastQueryVariables = {};
+export type LaunchesPastQueryVariables = {
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
+};
 
 
 export type LaunchesPastQuery = (
@@ -1342,8 +1345,8 @@ export type LaunchesPastQuery = (
 
 
 export const LaunchesPastDocument = gql`
-    query LaunchesPast {
-  launchesPast {
+    query LaunchesPast($limit: Int, $offset: Int) {
+  launchesPast(limit: $limit, offset: $offset) {
     id
     mission_name
     launch_date_local
@@ -1369,6 +1372,8 @@ export const LaunchesPastDocument = gql`
  * @example
  * const { data, loading, error } = useLaunchesPastQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
  *   },
  * });
  */
