@@ -1,5 +1,6 @@
 import {
   IonPage,
+  IonModal,
   IonTitle,
   IonHeader,
   IonToolbar,
@@ -7,8 +8,9 @@ import {
   IonContent,
   IonBackButton
 } from '@ionic/react'
-import React from 'react'
 import { useParams } from 'react-router'
+import ImageViewer from '../components/ImageViewer'
+import React, { useState, useCallback } from 'react'
 import LaunchDetail from '../components/LaunchDetail'
 import { useLaunchQuery, Launch } from '../generated/graphql'
 
@@ -17,6 +19,14 @@ const LaunchPage: React.FC = () => {
   const { data, loading } = useLaunchQuery({
     variables: { id }
   })
+
+  const [selectedImage, setSelectedImage] = useState('')
+
+  const handleSelectImage = useCallback((url: string) => {
+    setSelectedImage(url)
+  }, [])
+
+  const handleModalClose = useCallback(() => setSelectedImage(''), [])
 
   return (
     <IonPage>
@@ -29,8 +39,19 @@ const LaunchPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
-        {loading ? <p>Loading ...</p> : <LaunchDetail launch={data!.launch as Launch} />}
+        {loading ? (
+          <p>Loading ...</p>
+        ) : (
+          <LaunchDetail
+            launch={data!.launch as Launch}
+            onSelectImage={handleSelectImage}
+          />
+        )}
       </IonContent>
+
+      <IonModal isOpen={!!selectedImage} onDidDismiss={handleModalClose}>
+        <ImageViewer src={selectedImage} onClose={handleModalClose} />
+      </IonModal>
     </IonPage>
   )
 }
