@@ -9,12 +9,12 @@ import React from 'react'
 
 import Launches from '../components/Launches'
 
-const Missions: React.FC = () => {
+const LaunchesPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>SpaceX Launchs</IonTitle>
+          <IonTitle>SpaceX Launches</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -24,4 +24,4 @@ const Missions: React.FC = () => {
   )
 }
 
-export default Missions
+export default LaunchesPage

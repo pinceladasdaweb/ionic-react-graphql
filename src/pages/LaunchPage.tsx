@@ -12,7 +12,7 @@ import { useParams } from 'react-router'
 import LaunchDetail from '../components/LaunchDetail'
 import { useLaunchQuery, Launch } from '../generated/graphql'
 
-const Mission: React.FC = () => {
+const LaunchPage: React.FC = () => {
   const { id } = useParams<{id: string}>()
   const { data, loading } = useLaunchQuery({
     variables: { id }
@@ -23,9 +23,9 @@ const Mission: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/missions' />
+            <IonBackButton defaultHref='/launches' />
           </IonButtons>
-          <IonTitle>Mission Details</IonTitle>
+          <IonTitle>Launch</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
@@ -35,4 +35,4 @@ const Mission: React.FC = () => {
   )
 }
 
-export default Mission
+export default LaunchPage
