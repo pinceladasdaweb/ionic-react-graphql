@@ -7,15 +7,17 @@ import {
   IonRow,
   IonCol,
   IonGrid,
-  IonButton
+  IonButton,
+  IonLoading
 } from '@ionic/react'
 
+import Error from './Error'
 import LaunchesItem from './LaunchesItem'
 import { useLaunchesPastQuery, Launch } from '../generated/graphql'
 
 
 const Launches: React.FC = () => {
-  const { data, loading, fetchMore } = useLaunchesPastQuery({
+  const { data, loading, error, fetchMore } = useLaunchesPastQuery({
     variables: {
       limit: 12,
       offset: 0
@@ -57,20 +59,22 @@ const Launches: React.FC = () => {
     }
   }, [fetchMore, limit, offset])
 
+  if (loading) {
+    return <IonLoading isOpen={loading} message='Loading...' />
+  }
+
+  if (error) {
+    return <Error error={error} />
+  }
+
   return (
     <IonGrid fixed>
       <IonRow>
-        {loading ? (
-          <IonCol>
-            <p>Loading...</p>
+        {data && data.launchesPast.map(launch => (
+          <IonCol key={launch.id} size='12' sizeSm='6' sizeLg='4'>
+            <LaunchesItem launch={launch as Launch} />
           </IonCol>
-        ) : (
-          data && data.launchesPast.map(launch => (
-            <IonCol key={launch.id} size='12' sizeSm='6' sizeLg='4'>
-              <LaunchesItem launch={launch as Launch} />
-            </IonCol>
-          ))
-        )}
+        ))}
       </IonRow>
       {!loading && !finished ? (
         <IonRow>

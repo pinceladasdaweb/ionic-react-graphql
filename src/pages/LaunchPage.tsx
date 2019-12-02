@@ -9,8 +9,10 @@ import {
   IonToolbar,
   IonButtons,
   IonContent,
+  IonLoading,
   IonBackButton
 } from '@ionic/react'
+import Error from '../components/Error'
 import { useParams } from 'react-router'
 import ImageViewer from '../components/ImageViewer'
 import React, { useState, useCallback } from 'react'
@@ -19,7 +21,7 @@ import { useLaunchQuery, Launch } from '../generated/graphql'
 
 const LaunchPage: React.FC = () => {
   const { id } = useParams<{id: string}>()
-  const { data, loading } = useLaunchQuery({
+  const { data, loading, error } = useLaunchQuery({
     variables: { id }
   })
 
@@ -46,8 +48,8 @@ const LaunchPage: React.FC = () => {
           <IonRow>
             <IonCol sizeLg='8' offsetLg='2'>
               {loading ? (
-                <p>Loading ...</p>
-              ) : (
+                <IonLoading isOpen={loading} message='Loading...' />
+              ) : error ? <Error error={error}/> : (
                 <LaunchDetail
                   launch={data!.launch as Launch}
                   onSelectImage={handleSelectImage}
