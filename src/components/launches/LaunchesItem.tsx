@@ -4,10 +4,10 @@ import {
 } from '@ionic/react'
 import React from 'react'
 
-import { crop } from '../utils'
-import { Launch } from '../generated/graphql'
+import { crop } from '../../utils/crop'
 import styles from './LaunchesItem.module.scss'
-import noPhoto from '../assets/images/no-photo.svg'
+import { Launch } from '../../generated/graphql'
+import noPhoto from '../../assets/images/no-photo.svg'
 
 interface Props {
   launch: Launch

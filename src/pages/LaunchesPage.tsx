@@ -9,7 +9,7 @@ import {
 } from '@ionic/react'
 import React from 'react'
 
-import Launches from '../components/Launches'
+import Launches from '../components/launches/Launches'
 
 const LaunchesPage: React.FC = () => {
   return (

@@ -11,9 +11,9 @@ import {
   IonLoading
 } from '@ionic/react'
 
-import Error from './Error'
+import Error from '../error/Error'
 import LaunchesItem from './LaunchesItem'
-import { useLaunchesPastQuery, Launch } from '../generated/graphql'
+import { useLaunchesPastQuery, Launch } from '../../generated/graphql'
 
 
 const Launches: React.FC = () => {

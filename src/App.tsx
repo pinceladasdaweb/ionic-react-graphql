@@ -1,8 +1,8 @@
 import React from 'react'
-import Router from './Router'
 import { client } from './apollo'
-import Menu from './components/Menu'
+import Router from './routes/Router'
 import { IonApp } from '@ionic/react'
+import Menu from './components/menu/Menu'
 import { ApolloProvider } from '@apollo/react-hooks'
 
 const App: React.FC = () => (

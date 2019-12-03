@@ -12,10 +12,10 @@ import {
 } from '@ionic/react'
 import { format } from 'date-fns'
 import React, { useMemo } from 'react'
-import { Launch } from '../generated/graphql'
-import styles from './LauncheDetail.module.scss'
+import styles from './LaunchDetail.module.scss'
+import { Launch } from '../../generated/graphql'
 import { checkmark, close } from 'ionicons/icons'
-import noPhoto from '../assets/images/no-photo.svg'
+import noPhoto from '../../assets/images/no-photo.svg'
 
 interface Props {
   launch: Launch

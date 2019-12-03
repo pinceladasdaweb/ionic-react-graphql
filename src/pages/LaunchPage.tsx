@@ -12,11 +12,11 @@ import {
   IonLoading,
   IonBackButton
 } from '@ionic/react'
-import Error from '../components/Error'
 import { useParams } from 'react-router'
-import ImageViewer from '../components/ImageViewer'
+import Error from '../components/error/Error'
 import React, { useState, useCallback } from 'react'
-import LaunchDetail from '../components/LaunchDetail'
+import ImageViewer from '../components/image/ImageViewer'
+import LaunchDetail from '../components/launch/LaunchDetail'
 import { useLaunchQuery, Launch } from '../generated/graphql'
 
 const LaunchPage: React.FC = () => {
